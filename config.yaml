@@ -1,0 +1,61 @@
+output_dir: ./data
+
+fred:
+  api_key: ${FRED_API_KEY}
+  series:
+    - id: GDP               # Gross Domestic Product
+    - id: UNRATE             # Unemployment Rate
+    - id: CPIAUCSL           # Consumer Price Index
+    - id: DFF                # Federal Funds Rate
+    - id: DGS10              # 10-Year Treasury Rate
+    - id: M2SL               # M2 Money Supply
+
+yfinance:
+  series:
+    - id: AAPL
+      period: 5y
+      interval: 1d
+    - id: MSFT
+      period: 5y
+      interval: 1d
+    - id: "^GSPC"            # S&P 500
+      period: 10y
+      interval: 1wk
+    - id: "^DJI"             # Dow Jones
+      period: 10y
+      interval: 1wk
+    - id: GC=F               # Gold Futures
+      period: 5y
+      interval: 1d
+    - id: CL=F               # Crude Oil Futures
+      period: 5y
+      interval: 1d
+
+oecd:
+  series:
+    - id: USA.B1_GE.VOBARSA.Q
+      dataset: QNA
+      description: US Quarterly GDP
+    - id: USA.CPI.IXOB.M
+      dataset: PRICES_CPI
+      description: US CPI
+
+worldbank:
+  series:
+    - id: NY.GDP.MKTP.CD     # GDP current USD
+      country: US
+    - id: FP.CPI.TOTL.ZG     # CPI inflation
+      country: US
+    - id: SL.UEM.TOTL.ZS     # Unemployment
+      country: US
+    - id: FR.INR.RINR         # Real interest rate
+      country: US
+
+bls:
+  api_key: ${BLS_API_KEY}
+  start_year: "2015"
+  end_year: "2026"
+  series:
+    - id: LNS14000000         # Unemployment Rate
+    - id: CUUR0000SA0         # CPI-U All Items
+    - id: CES0000000001       # Total Nonfarm Payroll

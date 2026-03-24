@@ -1,0 +1,80 @@
+smtp:
+  host: smtp.gmail.com
+  port: 587
+  sender: ${GMAIL_ADDRESS}
+  password: ${GMAIL_APP_PASSWORD}
+  recipients:
+    - ${GMAIL_ADDRESS}
+
+fred:
+  api_key: ${FRED_API_KEY}
+
+rates:
+  - id: DFF
+    label: Fed Funds Rate
+    category: Money Market
+  - id: SOFR
+    label: SOFR
+    category: Money Market
+  - id: DGS2
+    label: 2Y Treasury
+    category: Treasury Yields
+  - id: DGS5
+    label: 5Y Treasury
+    category: Treasury Yields
+  - id: DGS10
+    label: 10Y Treasury
+    category: Treasury Yields
+  - id: DGS30
+    label: 30Y Treasury
+    category: Treasury Yields
+  - id: MORTGAGE30US
+    label: 30Y Mortgage
+    category: Credit & Mortgage
+  - id: DPRIME
+    label: Prime Rate
+    category: Credit & Mortgage
+  - id: DBAA
+    label: "Moody's Baa Corporate"
+    category: Credit & Mortgage
+  - id: DAAA
+    label: "Moody's Aaa Corporate"
+    category: Credit & Mortgage
+
+yield_curve:
+  - id: DGS1MO
+    tenor: 1M
+  - id: DGS3MO
+    tenor: 3M
+  - id: DGS6MO
+    tenor: 6M
+  - id: DGS1
+    tenor: 1Y
+  - id: DGS2
+    tenor: 2Y
+  - id: DGS3
+    tenor: 3Y
+  - id: DGS5
+    tenor: 5Y
+  - id: DGS7
+    tenor: 7Y
+  - id: DGS10
+    tenor: 10Y
+  - id: DGS20
+    tenor: 20Y
+  - id: DGS30
+    tenor: 30Y
+
+fed_funds_futures:
+  enabled: true
+  n_months: 12
+
+feeds:
+  fed_publications:
+    - https://www.federalreserve.gov/feeds/press_all.xml
+  econ_analysis:
+    - https://www.nber.org/rss/new.xml
+    - https://www.brookings.edu/topics/economic-studies/feed/
+  ai_news:
+    - http://export.arxiv.org/rss/cs.AI
+    - https://feeds.arstechnica.com/arstechnica/technology-lab

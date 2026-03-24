@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="margin:0;padding:0;background:#f5f5f5;font-family:Arial,Helvetica,sans-serif;">
+<table width="100%" cellpadding="0" cellspacing="0" style="background:#f5f5f5;">
+<tr><td align="center" style="padding:20px 10px;">
+<table width="700" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:8px;overflow:hidden;">
+
+<!-- Header -->
+<tr>
+<td style="background:#1a237e;padding:24px 30px;">
+  <h1 style="margin:0;color:#ffffff;font-size:22px;font-weight:bold;">Daily Financial Brief</h1>
+  <p style="margin:6px 0 0;color:#b3b9e6;font-size:14px;">{{ report_date }}</p>
+</td>
+</tr>
+
+<!-- Interest Rates -->
+<tr>
+<td style="padding:24px 30px;">
+  <h2 style="margin:0 0 14px;font-size:18px;color:#1a237e;border-bottom:2px solid #e8eaf6;padding-bottom:8px;">
+    Interest Rates
+  </h2>
+  {{ rates_html }}
+</td>
+</tr>
+
+<!-- Yield Curve Chart -->
+<tr>
+<td style="padding:12px 30px 24px;">
+  <h2 style="margin:0 0 14px;font-size:18px;color:#1a237e;border-bottom:2px solid #e8eaf6;padding-bottom:8px;">
+    Yield Curves
+  </h2>
+  {% if yield_curve_cid %}
+  <img src="cid:{{ yield_curve_cid }}" alt="US Treasury Yield Curve"
+       style="width:100%;max-width:640px;height:auto;display:block;margin:0 auto;">
+  {% else %}
+  <p style="color:#999;">Yield curve chart unavailable.</p>
+  {% endif %}
+</td>
+</tr>
+
+<!-- Fed Funds Futures Chart -->
+<tr>
+<td style="padding:0 30px 24px;">
+  {% if fed_futures_cid %}
+  <img src="cid:{{ fed_futures_cid }}" alt="Fed Funds Futures Implied Rate"
+       style="width:100%;max-width:640px;height:auto;display:block;margin:0 auto;">
+  {% else %}
+  <p style="color:#999;">Fed Funds futures chart unavailable.</p>
+  {% endif %}
+</td>
+</tr>
+
+<!-- Fed Publications -->
+<tr>
+<td style="padding:12px 30px 24px;">
+  <h2 style="margin:0 0 14px;font-size:18px;color:#1a237e;border-bottom:2px solid #e8eaf6;padding-bottom:8px;">
+    Federal Reserve Publications
+  </h2>
+  {% if fed_links %}
+  <ul style="margin:0;padding:0 0 0 18px;line-height:1.8;">
+    {% for item in fed_links %}
+    <li style="margin-bottom:6px;">
+      <a href="{{ item.link }}" style="color:#1565c0;text-decoration:none;">{{ item.title }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p style="color:#999;">No recent publications found.</p>
+  {% endif %}
+</td>
+</tr>
+
+<!-- Economic Analysis -->
+<tr>
+<td style="padding:0 30px 24px;">
+  <h2 style="margin:0 0 14px;font-size:18px;color:#1a237e;border-bottom:2px solid #e8eaf6;padding-bottom:8px;">
+    Economic Analysis
+  </h2>
+  {% if econ_links %}
+  <ul style="margin:0;padding:0 0 0 18px;line-height:1.8;">
+    {% for item in econ_links %}
+    <li style="margin-bottom:6px;">
+      <a href="{{ item.link }}" style="color:#1565c0;text-decoration:none;">{{ item.title }}</a>
+      {% if item.source %}<span style="color:#999;font-size:12px;"> — {{ item.source }}</span>{% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p style="color:#999;">No recent analysis found.</p>
+  {% endif %}
+</td>
+</tr>
+
+<!-- AI News -->
+<tr>
+<td style="padding:0 30px 24px;">
+  <h2 style="margin:0 0 14px;font-size:18px;color:#1a237e;border-bottom:2px solid #e8eaf6;padding-bottom:8px;">
+    AI News &amp; Advances
+  </h2>
+  {% if ai_news %}
+  {% for item in ai_news %}
+  <div style="margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #f0f0f0;">
+    <a href="{{ item.link }}" style="color:#1565c0;text-decoration:none;font-weight:bold;font-size:14px;">
+      {{ item.title }}
+    </a>
+    {% if item.source %}<span style="color:#999;font-size:12px;"> — {{ item.source }}</span>{% endif %}
+    {% if item.summary %}
+    <p style="margin:4px 0 0;font-size:13px;color:#555;line-height:1.5;">{{ item.summary }}</p>
+    {% endif %}
+  </div>
+  {% endfor %}
+  {% else %}
+  <p style="color:#999;">No recent AI news found.</p>
+  {% endif %}
+</td>
+</tr>
+
+<!-- Footer -->
+<tr>
+<td style="background:#f5f5f5;padding:16px 30px;border-top:1px solid #e0e0e0;">
+  {% if errors %}
+  <p style="color:#d32f2f;font-size:12px;margin:0 0 8px;">
+    <strong>Errors:</strong> {{ errors | join("; ") }}
+  </p>
+  {% endif %}
+  <p style="color:#999;font-size:12px;margin:0;">
+    Generated automatically at {{ generated_at }}
+  </p>
+</td>
+</tr>
+
+</table>
+</td></tr>
+</table>
+</body>
+</html>

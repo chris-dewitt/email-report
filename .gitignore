@@ -1,0 +1,12 @@
+# Generated data and logs
+data/
+logs/
+__pycache__/
+*.pyc
+
+# Environment / secrets
+.env
+*.env
+
+# Claude local config
+.claude/
