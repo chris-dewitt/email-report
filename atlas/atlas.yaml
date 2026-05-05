@@ -1,0 +1,42 @@
+# Atlas Configuration
+# Master config for the macro intelligence platform
+
+data_dir: ./data
+
+# Ollama (local LLM)
+ollama:
+  host: http://localhost:11434
+  model: mistral
+  timeout_seconds: 300
+
+# API server
+api:
+  host: 0.0.0.0
+  port: 8000
+  cors_origins:
+    - http://localhost:5173
+    - http://localhost:3000
+
+# Feature engineering
+features:
+  zscore_window: 504          # ~2 years of trading days
+  lookback_default_days: 7    # copilot "what changed" window
+  history_start: "2015-01-01" # how far back to pull
+
+# Regime classification thresholds
+regime:
+  expansion:
+    labor_z_min: 0.5
+    growth_positive: true
+  overheating:
+    inflation_z_min: 1.0
+    labor_z_min: 0.5
+  slowdown:
+    growth_decelerating: true
+    claims_rising: true
+  contraction:
+    growth_z_max: -0.5
+    unemployment_rising: true
+  financial_stress:
+    nfci_min: 0.0
+    vix_z_min: 1.5
